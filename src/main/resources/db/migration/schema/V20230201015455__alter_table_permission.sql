@@ -1,0 +1,1 @@
+ALTER TABLE IF EXISTS "permission" RENAME TO permission_manager;
