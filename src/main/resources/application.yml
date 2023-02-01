@@ -2,10 +2,11 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/usermanager
     username: postgres
-    password: user123
+    password: root123
   flyway:
     enabled: true
     baseline-on-migrate: true
   jpa:
     hibernate:
       ddl-auto: validate
+    show-sql: true
