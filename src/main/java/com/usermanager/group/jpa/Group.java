@@ -1,5 +1,6 @@
-package com.usermanager.group;
+package com.usermanager.group.jpa;
 
+import com.usermanager.group.dto.GroupCreateDTO;
 import com.usermanager.permission.Permission;
 import com.usermanager.users.User;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -33,6 +35,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="group_manager")
 public class Group implements Serializable {
 
     private static final long serialVersionUID = 8647104129250551803L;
@@ -57,6 +60,14 @@ public class Group implements Serializable {
 
 //    @ManyToOne
 //    private User user;
+
+    public static Group from (GroupCreateDTO groupCreateDTO){
+        return Group
+                .builder()
+                .name(groupCreateDTO.getName())
+                .description(groupCreateDTO.getDescription())
+                .build();
+    }
 
 
 }

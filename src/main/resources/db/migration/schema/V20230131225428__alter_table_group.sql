@@ -1,0 +1,1 @@
+ALTER TABLE IF EXISTS "group" RENAME TO group_manager;
