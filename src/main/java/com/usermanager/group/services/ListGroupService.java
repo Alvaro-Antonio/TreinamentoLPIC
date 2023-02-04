@@ -5,6 +5,6 @@ import com.usermanager.group.jpa.Group;
 import java.util.List;
 
 @FunctionalInterface
-public interface GetGroupService {
-    Group getGroup(Long id);
+public interface ListGroupService {
+    List<Group> getGroup();
 }
