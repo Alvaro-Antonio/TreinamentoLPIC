@@ -1,5 +1,6 @@
-package com.usermanager.permission;
+package com.usermanager.permission.jpa;
 
+import com.usermanager.permission.dto.PermissionCreateDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -42,4 +43,11 @@ public class Permission implements Serializable {
     @NotNull
     private String description;
 
+    public static Permission from (PermissionCreateDTO permissionCreateDTO) {
+        return Permission
+                .builder()
+                .name(permissionCreateDTO.getName())
+                .description(permissionCreateDTO.getDescription())
+                .build();
+    }
 }
