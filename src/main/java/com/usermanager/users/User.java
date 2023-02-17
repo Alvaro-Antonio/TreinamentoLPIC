@@ -1,5 +1,6 @@
 package com.usermanager.users;
 
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import com.usermanager.users.enuns.UserType;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(of = {"id"})
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "user_manager")
 public class User implements Serializable {
 
     @Id
