@@ -1,5 +1,6 @@
 package com.usermanager.simulated.jpa;
 
+import com.usermanager.simulated.DTO.feedback.FeedbackCreateDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -50,6 +51,13 @@ public class Feedback implements Serializable {
 
     @OneToOne(mappedBy = "feedback")
     private Question question;
+
+    public static Feedback from (FeedbackCreateDTO feedbackCreateDTO){
+        return Feedback.builder()
+                .link(feedbackCreateDTO.getLink())
+                .feedbackText(feedbackCreateDTO.getFeedbackText())
+                .build();
+    }
 
     @Override
     public boolean equals(Object o) {

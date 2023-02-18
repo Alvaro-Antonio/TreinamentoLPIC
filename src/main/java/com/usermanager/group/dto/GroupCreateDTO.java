@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serial;
 import java.io.Serializable;
 
 
@@ -23,6 +24,7 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 public class GroupCreateDTO implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -7929877958287967967L;
 
     @NotBlank

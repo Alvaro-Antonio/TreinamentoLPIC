@@ -1,5 +1,7 @@
 package com.usermanager.simulated.jpa;
 
+import com.usermanager.simulated.DTO.question.QuestionCreateDTO;
+import com.usermanager.simulated.DTO.question.QuestionDTO;
 import com.usermanager.users.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -53,6 +55,23 @@ public class Question implements Serializable {
     @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "feedback_id")
     private Feedback feedback;
+
+    public static Question from(QuestionDTO questionDTO) {
+        return Question.builder()
+                .id(questionDTO.getId())
+                .title(questionDTO.getTitle())
+                .userCreate(questionDTO.getUserCreate())
+                .feedback(questionDTO.getFeedback())
+                .build();
+    }
+
+    public static Question from(QuestionCreateDTO questionDTO) {
+        return Question.builder()
+                .title(questionDTO.getTitle())
+                .userCreate(questionDTO.getUserCreate())
+                .feedback(questionDTO.getFeedback())
+                .build();
+    }
 
     @Override
     public boolean equals(Object o) {

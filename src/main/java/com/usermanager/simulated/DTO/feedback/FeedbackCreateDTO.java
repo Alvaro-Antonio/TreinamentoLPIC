@@ -1,16 +1,17 @@
-package com.usermanager.permission.dto;
+package com.usermanager.simulated.DTO.feedback;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.usermanager.permission.jpa.Permission;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -21,23 +22,17 @@ import java.io.Serializable;
 @Builder(builderClassName = "Builder")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-public class PermissionCreateDTO implements Serializable {
+public class FeedbackCreateDTO implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 762303265011151011L;
-    @NotBlank
+    private static final long serialVersionUID = 1081672713334208014L;
     @NotNull
-    private String name;
-
     @NotBlank
-    @NotNull
-    private String description;
+    @URL
+    private String link;
 
-    public static PermissionCreateDTO from (Permission permission){
-        return PermissionCreateDTO
-                .builder()
-                .name(permission.getName())
-                .description(permission.getDescription())
-                .build();
-    }
+    @NotNull
+    @NotBlank
+    @Size(min = 20,max = 512, message = "description must be less than 512 characters")
+    private String feedbackText;
 }

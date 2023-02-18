@@ -4,5 +4,5 @@ import com.usermanager.simulated.jpa.Alternative;
 
 @FunctionalInterface
 public interface CreateAlternativeService {
-    Alternative createAlternative();
+    Alternative createAlternative(Long questionId,Alternative alternative);
 }
