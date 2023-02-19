@@ -1,5 +1,6 @@
 package com.usermanager.simulated.jpa;
 
+import com.usermanager.simulated.DTO.alternative.AlternativeCreateDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -50,6 +51,14 @@ public class Alternative implements Serializable {
     @JoinColumn(name = "question_id")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Question question;
+
+    public static Alternative from (AlternativeCreateDTO alternativeCreateDTO){
+        return Alternative.builder()
+                .correct(alternativeCreateDTO.getCorrect())
+                .title(alternativeCreateDTO.getTitle())
+                .question(alternativeCreateDTO.getQuestion())
+                .build();
+    }
 
 
     @Override
