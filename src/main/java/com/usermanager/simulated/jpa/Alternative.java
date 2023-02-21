@@ -1,5 +1,6 @@
 package com.usermanager.simulated.jpa;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.usermanager.simulated.DTO.alternative.AlternativeCreateDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,6 +51,7 @@ public class Alternative implements Serializable {
     @NotNull(message = "Question is mandatory")
     @JoinColumn(name = "question_id")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JsonBackReference
     private Question question;
 
     public static Alternative from (AlternativeCreateDTO alternativeCreateDTO){
