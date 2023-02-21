@@ -4,9 +4,11 @@ import com.usermanager.simulated.DTO.alternative.AlternativeCreateDTO;
 import com.usermanager.simulated.jpa.Alternative;
 
 import com.usermanager.simulated.services.alternative.CreateAlternativeService;
+import com.usermanager.simulated.services.alternative.GetAlternativeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,13 +20,21 @@ import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/api/user/{userId}/question/{questionId}/alternative")
+@RequestMapping(value = "/api/user/{userId}/question/{questionId}/alternative/")
 public class AlternativeController {
     private final CreateAlternativeService createAlternativeService;
+    private final GetAlternativeService getAlternativeService;
 
     @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Alternative createAlternative(@Valid @RequestBody AlternativeCreateDTO alternativeCreateDTO, @PathVariable Long userId, @PathVariable Long questionId){
         return createAlternativeService.createAlternative(userId, questionId, alternativeCreateDTO);
+    }
+
+    @ResponseStatus(code = HttpStatus.OK)
+    @GetMapping(value = "{alternativeId}")
+    public Alternative getAlternative(@PathVariable Long userId, @PathVariable Long questionId, @PathVariable Long alternativeId){
+
+        return getAlternativeService.getAlternative(userId, questionId, alternativeId);
     }
 }
