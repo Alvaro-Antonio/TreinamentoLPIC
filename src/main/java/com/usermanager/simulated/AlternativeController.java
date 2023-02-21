@@ -5,6 +5,7 @@ import com.usermanager.simulated.jpa.Alternative;
 
 import com.usermanager.simulated.services.alternative.CreateAlternativeService;
 import com.usermanager.simulated.services.alternative.GetAlternativeService;
+import com.usermanager.simulated.services.alternative.ListAlternativeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -24,6 +26,7 @@ import javax.validation.Valid;
 public class AlternativeController {
     private final CreateAlternativeService createAlternativeService;
     private final GetAlternativeService getAlternativeService;
+    private final ListAlternativeService listAlternativeService;
 
     @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,5 +39,12 @@ public class AlternativeController {
     public Alternative getAlternative(@PathVariable Long userId, @PathVariable Long questionId, @PathVariable Long alternativeId){
 
         return getAlternativeService.getAlternative(userId, questionId, alternativeId);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping
+    public List<Alternative> listAlternative (@PathVariable Long userId, @PathVariable Long questionId){
+
+        return listAlternativeService.listAlternative(userId, questionId);
     }
 }
