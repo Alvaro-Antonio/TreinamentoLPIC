@@ -12,4 +12,6 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     @Query(value = "select * from Question order by random() limit ?1 ",nativeQuery = true)
     List<Question> findAllRandonAndLimited(int amount);
+
+    void deleteById(Long questionId);
 }
