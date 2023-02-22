@@ -2,6 +2,8 @@ package com.usermanager.users;
 
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.usermanager.users.enuns.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -55,15 +57,19 @@ public class User implements Serializable {
     private String email;
 
     @NotNull(message = "password is mandatory")
+    @JsonIgnore
     private String password;
 
     /*@NotNull(message = "type is mandatory")
     private UserType type;*/
 
+    @JsonIgnore
     private String profilePicture;
 
     @NotNull(message = "creationDate is mandatory")
+    @JsonIgnore
     private LocalDateTime creationDate;
 
+    @JsonIgnore
     private LocalDateTime lastLoginDate;
 }
