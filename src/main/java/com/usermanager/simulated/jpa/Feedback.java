@@ -1,5 +1,6 @@
 package com.usermanager.simulated.jpa;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.usermanager.simulated.DTO.feedback.FeedbackCreateDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,6 +51,7 @@ public class Feedback implements Serializable {
     private String feedbackText;
 
     @OneToOne(mappedBy = "feedback")
+    @JsonBackReference
     private Question question;
 
     public static Feedback from (FeedbackCreateDTO feedbackCreateDTO){
