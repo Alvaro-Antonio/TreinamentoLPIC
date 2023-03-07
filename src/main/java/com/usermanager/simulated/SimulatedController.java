@@ -1,6 +1,7 @@
 package com.usermanager.simulated;
 
-import com.usermanager.simulated.services.GetSimulatedService;
+import com.usermanager.simulated.DTO.simulated.QuestionWithAlternativesDTO;
+import com.usermanager.simulated.services.simulated.GetSimulatedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class SimulatedController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<QuestionWithAlternatives> listQuestionsWithAlternatives(@PathVariable Long userId,@RequestParam int amount){
+    public List<QuestionWithAlternativesDTO> listQuestionsWithAlternatives(@PathVariable Long userId, @RequestParam int amount){
         return getSimulatedService.getQuestionsWithAlternatives(amount);
     }
 }

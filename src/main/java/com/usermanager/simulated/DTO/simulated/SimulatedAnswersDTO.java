@@ -1,9 +1,7 @@
-package com.usermanager.simulated;
+package com.usermanager.simulated.DTO.simulated;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.usermanager.simulated.jpa.Alternative;
-import com.usermanager.simulated.jpa.Question;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +10,6 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,15 +19,13 @@ import java.util.List;
 @Builder(builderClassName = "Builder")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-public class QuestionWithAlternatives implements Serializable {
+public class SimulatedAnswersDTO implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 906474836658797083L;
+    private static final long serialVersionUID = 2722204124237107952L;
 
-    private Question question;
+    private List<AnswerDTO> answers;
 
-    private List<Alternative> alternatives = new ArrayList<>();
-
-
+    private float score;
 
 }
