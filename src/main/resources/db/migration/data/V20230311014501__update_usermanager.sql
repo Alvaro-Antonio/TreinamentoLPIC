@@ -1,0 +1,1 @@
+update user_manager set indicators_id = 1 where id = 1;
