@@ -7,5 +7,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface ValuerSimulatedService {
-    SimulatedAnswersDTO simulatedAnswers(List<AnswerDTO> answers);
+    SimulatedAnswersDTO simulatedAnswers(Long userId, List<AnswerDTO> answers);
 }
