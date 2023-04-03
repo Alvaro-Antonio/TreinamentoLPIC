@@ -4,6 +4,7 @@ import com.usermanager.permission.dto.PermissionCreateDTO;
 import com.usermanager.permission.jpa.Permission;
 import com.usermanager.permission.services.CreatePermissionService;
 import com.usermanager.permission.services.ListPermissionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor

@@ -1,10 +1,22 @@
 package com.usermanager.users;
 
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.usermanager.users.enuns.UserType;
+import com.usermanager.indicators.jpa.Indicators;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -12,24 +24,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.usermanager.users.dto.UserRegisterDTO;
 
 @Getter
 @Setter
 @Builder(builderClassName = "Builder")
 @Entity(name = "user")
-@EqualsAndHashCode(of = {"id"})
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "user_manager")
@@ -60,8 +64,8 @@ public class User implements Serializable {
     @JsonIgnore
     private String password;
 
-    /*@NotNull(message = "type is mandatory")
-    private UserType type;*/
+//    @NotNull(message = "type is mandatory")
+//    private UserType type;
 
     @JsonIgnore
     private String profilePicture;
@@ -72,4 +76,21 @@ public class User implements Serializable {
 
     @JsonIgnore
     private LocalDateTime lastLoginDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "indicators_id", referencedColumnName = "id")
+    private Indicators indicators;
+
+    public String getUsername (){
+        return this.email;
+    }
+
+    public static User from(UserRegisterDTO userRegisterDTO) {
+        return User.builder()
+                .firstName(userRegisterDTO.getFirstName())
+                .lastName(userRegisterDTO.getLastName())
+                .email(userRegisterDTO.getEmail())
+                .password(userRegisterDTO.getPassword())
+                .build();
+    }
 }

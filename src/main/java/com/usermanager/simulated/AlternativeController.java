@@ -6,6 +6,7 @@ import com.usermanager.simulated.jpa.Alternative;
 import com.usermanager.simulated.services.alternative.CreateAlternativeService;
 import com.usermanager.simulated.services.alternative.GetAlternativeService;
 import com.usermanager.simulated.services.alternative.ListAlternativeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
